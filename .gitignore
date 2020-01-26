@@ -1,0 +1,10 @@
+.cache/
+.coverage
+.tox/
+htmlcov/
+staticfiles/
+venv/
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
