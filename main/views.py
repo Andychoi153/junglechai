@@ -2,7 +2,7 @@ import datetime
 
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
-from manage import queues, matches
+from queues import queues, matches
 from django.urls import reverse
 
 from .forms import ProfileForm
