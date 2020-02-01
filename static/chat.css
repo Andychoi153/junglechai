@@ -1,5 +1,5 @@
 body {
-    padding-top: 4em;
+padding-left: 0px;
 }
 
 p.deck {
@@ -15,3 +15,42 @@ p.deck a {
     font-size: 90%;
     color: #999;
 }
+
+.flex{
+    display:flex;
+}
+
+.left_bg{
+padding-left: 0px;
+}
+
+.main_frame{
+    width: 815px;
+    margin: 306px 120px 306px 120px;
+}
+
+.container{
+width: 1905px;
+max-width: 3000px;}
+
+
+
+.main_title{
+font-size: 46px;
+text-align: center;
+height: 100px;
+}
+
+.id_input{
+width: 548px;
+}
+
+.tearbox{
+width: 548px;
+}
+
+.abutton{
+text-align: center;
+width: 548px;
+margin: 20px 0px 0px 0px;}
+

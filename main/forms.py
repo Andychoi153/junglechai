@@ -10,6 +10,14 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['tear', 'profile_id']
+        widgets={
+            'tear': forms.Select(
+                attrs={'class':'tearbox'}
+            ),
+            'profile_id': forms.TextInput(
+                attrs={'class':'tearbox'}
+            )
+        }
 
     def clean_renewal_date(self):
         tear = self.cleaned_data['tear']
