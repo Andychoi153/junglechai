@@ -1,7 +1,42 @@
+var roomName = {{ room_name_json }};
+var profileId = {{ profile_id_json }};
+var chatSocket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws/chat/' + roomName + '/');
+
+chatSocket.onmessage = function(e) {
+    var data = JSON.parse(e.data);
+    var message = data['message'];
+    document.querySelector('#chat-log').value += (message + '\n');
+};
+
+chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+};
+
+document.querySelector('#chat-message-input').focus();
+document.querySelector('#chat-message-input').onkeyup = function(e) {
+    if (e.keyCode === 13) {  // enter, return
+        document.querySelector('#chat-message-submit').click();
+    }
+};
+
+document.querySelector('#chat-message-submit').onclick = function(e) {
+    var messageInputDom = document.querySelector('#chat-message-input');
+    var message = messageInputDom.value;
+    chatSocket.send(JSON.stringify({
+        'message': (profileId + ': ' + message)
+    }));
+
+    messageInputDom.value = '';
+};
+
 $(function() {
-    // When we're using HTTPS, use WSS too.
-    var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
-    var chatsock = new ReconnectingWebSocket(ws_scheme + '://' + window.location.host + "/chat" + window.location.pathname);
+    var roomName = {{ room_name_json }};
+    var profileId = {{ profile_id_json }};
+    var chatSocket = new WebSocket(
+        'ws://' + window.location.host +
+        '/ws/chat/' + roomName + '/');
     
     chatsock.onmessage = function(message) {
         var data = JSON.parse(message.data);
@@ -23,7 +58,7 @@ $(function() {
 
     $("#chatform").on("submit", function(event) {
         var message = {
-            handle: $('#handle').val(),
+            handle: profile_id_json,
             message: $('#message').val(),
         }
         chatsock.send(JSON.stringify(message));
