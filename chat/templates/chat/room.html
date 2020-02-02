@@ -12,7 +12,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.6.8-fix/jquery.nicescroll.min.js"></script>
 <div class="content container-fluid bootstrap snippets">
       <div class="row row-broken">
-        <div class="col-sm-12 col-xs-12 chat" style="overflow: scroll; outline: none;" tabindex="0">
+        <div class="col-sm-12 col-xs-12 chat" style="overflow: auto; outline: none;" tabindex="0">
           <div class="col-inside-lg decor-default">
             <div class="chat-body">
               <div id="chat-messages"></div>
@@ -68,6 +68,8 @@
         console.log(htmldiv);
         $( "#chat-messages" ).html(htmldiv);
         $(".chat").niceScroll();
+        $(".chat").scrollTop($(".chat")[0].scrollHeight);
+
 
     };
 
