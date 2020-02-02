@@ -39,8 +39,13 @@ def dequeueing(queues, match):
                     string = (a+b).encode('utf-8')
                     enc.update(string)
                     hashing_chat_room = enc.hexdigest()
-                    matches.update({a: hashing_chat_room,
-                                    b: hashing_chat_room})
+                    matches.update({a: {
+                                          'room': hashing_chat_room,
+                                          'duo': b},
+                                    b: {
+                                            'room': hashing_chat_room,
+                                            'duo': a}})
+
                     print('hashing done')
 
     except Exception as e:

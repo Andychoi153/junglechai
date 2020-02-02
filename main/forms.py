@@ -27,7 +27,6 @@ class ProfileForm(forms.ModelForm):
         if tear is None:
             raise ValidationError(_('티어를 입력해 주세요.'))
 
-        # Check if a date is in the allowed range (+4 weeks from today).
         if id is None:
             raise ValidationError(_('롤 아이디를 입력해 주세요.'))
 

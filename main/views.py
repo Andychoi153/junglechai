@@ -38,7 +38,9 @@ def index(request):
                     break
 
             if match_flag == 1:
-                return HttpResponseRedirect(f'/chat/{values}?profile_id={profile_id}')
+                room = values.get('room')
+                duo = values.get('duo')
+                return HttpResponseRedirect(f'/chat/{room}?profile_id={profile_id}&duo_profile_id={duo}')
             else:
                 context = {
                     'form': profile,
