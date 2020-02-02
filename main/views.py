@@ -19,28 +19,28 @@ def index(request):
         profile = ProfileForm(request.POST)
         if profile.is_valid():
             match_flag = 0
-            profile.profile_id = profile.cleaned_data['profile_id']
+            profile.lol_id = profile.cleaned_data['lol_id']
             profile.tear = profile.cleaned_data['tear']
             tear = profile.tear
-            profile_id = profile.profile_id
-            queues[(int(tear)-1)].put(profile.profile_id)
+            lol_id = profile.lol_id
+            queues[(int(tear)-1)].put(profile.lol_id)
             start = time.time()
             while True:
-                values = matches.get(profile.profile_id)
+                values = matches.get(profile.lol_id)
                 if values:
-                    matches.update({profile.profile_id: None})
+                    matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
                 if time.time() - start > 180:
-                    profile_id = queues[(int(tear) - 1)].get()
-                    if profile_id != profile.profile_id:
-                        queues[(int(tear) - 1)].put(profile.profile_id)
+                    lol_id = queues[(int(tear) - 1)].get()
+                    if lol_id != profile.lol_id:
+                        queues[(int(tear) - 1)].put(profile.lol_id)
                     break
 
             if match_flag == 1:
                 room = values.get('room')
                 duo = values.get('duo')
-                return HttpResponseRedirect(f'/chat/{room}?profile_id={profile_id}&duo_profile_id={duo}')
+                return HttpResponseRedirect(f'/chat/{room}?profile_id={lol_id}&duo_profile_id={duo}')
             else:
                 context = {
                     'form': profile,

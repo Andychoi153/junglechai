@@ -13,4 +13,4 @@ class Profile(models.Model):
                     (8, '그랜드 마스터'),
                     (9, '챌린저'))
     tear = models.IntegerField(choices=TEAR_CHOICES)
-    profile_id = models.CharField(max_length=30)
+    lol_id = models.CharField(max_length=30)

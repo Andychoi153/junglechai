@@ -9,19 +9,19 @@ from main.models import Profile
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['tear', 'profile_id']
+        fields = ['tear', 'lol_id']
         widgets={
             'tear': forms.Select(
                 attrs={'class':'tearbox'}
             ),
-            'profile_id': forms.TextInput(
+            'lol_id': forms.TextInput(
                 attrs={'class':'tearbox'}
             )
         }
 
     def clean_renewal_date(self):
         tear = self.cleaned_data['tear']
-        id = self.cleaned_data['profile_id']
+        id = self.cleaned_data['lol_id']
 
         # Check if a date is not in the past.
         if tear is None:
