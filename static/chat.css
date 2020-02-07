@@ -1,5 +1,26 @@
 body {
-padding-left: 0px;
+max-width: 3600px;
+margin-top: 0px;
+font-size: 17px;
+color: #FFFFFF;
+font-weight: lighter;
+}
+
+.tearbox{
+width: 548px;
+background: rgba(241,241,241,0.24) !important;
+box-shadow: 4px 18px 22px 0 rgba(116,116,116,0.14) !important;
+border-radius: 1px !important;
+border: 1px solid #A4A4A4 !important;
+color: #353B50 !important;
+height: 50px !important;
+margin-bottom: 30px !important;
+}
+
+.container{
+width: 1905px;
+max-width: 3000px;
+padding: 0px;
 }
 
 p.deck {
@@ -16,50 +37,61 @@ p.deck a {
     color: #999;
 }
 
-.flex{
-    display:flex;
-}
-
 .left_bg{
 padding-left: 0px;
 }
 
 .main_frame{
-    width: 815px;
-    margin: 306px 120px 306px 120px;
+    width: 547px;
+    margin: 192px 1032px 192px 192px;
+    z-index: 3;
+    height: 547px;
+    position: absolute;
+    padding: 74px;
 }
 
-.container{
-width: 1905px;
-max-width: 3000px;}
 
+.btn{
+background: #C1AD63;
+font-family: AppleSDGothicNeo-Medium;
+font-size: 17px;
+color: #FFFFFF;
+letter-spacing: 0;
+text-align: center;
+width: 547px;
+border: 0px;
+height: 50px !important;
+}
 
 
 .main_title{
 font-size: 46px;
 text-align: center;
 height: 100px;
+color: #FFFFFF;
+text-decoration: underline;
 }
 
-.id_input{
-width: 548px;
+.ment{
+font-size: 24px;
+text-align: center;
+color: #FFFFFF;
+    height: 125px;
+
 }
 
-.tearbox{
-width: 548px;
+.background{
+    z-index: 1;
+    position: absolute;
+
 }
+
 
 .abutton{
 text-align: center;
 width: 548px;
 margin: 20px 0px 0px 0px;}
 
-
-
-body{
-    margin-top:20px;
-    background:#eee;
-}
 .row.row-broken {
     padding-bottom: 0;
 }

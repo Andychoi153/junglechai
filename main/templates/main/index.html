@@ -2,28 +2,26 @@
 
 {% block content %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
  <meta charset="utf-8">
-    <div class="flex">
-       <div class="left_bg"></div>
-       {% load static %}
-          <img src="{% static 'Background.png'%}">
-       <div class="main_frame">
-          <div class="main_title"> "듀오 구해요" </div>
-          <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600,200' rel='stylesheet' type='text/css'>
-             <form class="id_input" action="" method="post">
-                {% csrf_token %}
-                {{ form.as_table }}
-                <div class="abutton">
-                   <button type="submit" class="btn btn-primary btn-lg">랜덤 매칭</button>
-                </div>
-             </form>
-       </div>
+    {% load static %}
+    <img class="background", src="{% static 'Background.png'%}">
+    <div class="main_frame">
+       <div class="main_title"> "롤 듀오 찾아요" </div>
+       <div class="ment">당신에게 가장 적합한 듀오를 찾아드립니다.</div>
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600,200' rel='stylesheet' type='text/css'>
+          <form class="id_input" action="" method="post">
+             {% csrf_token %}
+             {{ form.as_table }}
+             <div class="abutton">
+                <button type="submit" class="btn">랜덤 매칭</button>
+             </div>
+          </form>
+    </div>
     </div>
                    <script>
                     $(document).ready(function() {
