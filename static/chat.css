@@ -340,13 +340,13 @@ padding-top: 600px;
 }
 
 .main_frame{
-width: calc(100% - 80px);
+width: calc(100% - 20px);
 margin: 0px 0px 0px 0px;
-
+padding: 10px;
 }
 
 .container{
-width: calc(100% - 80px);
+width: calc(100% - 20px);
 
 }
 
