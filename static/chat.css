@@ -332,22 +332,19 @@ margin: 20px 0px 0px 0px;}
 
 
 @media (max-width: 700px) {
-.background{
-width: 100%;
-z-index: 3;
-position: relative;
-padding-top: 600px;
-}
+    .background{
+    width: 100%;
+    position: relative;
+    }
 
-.main_frame{
-width: calc(100% - 20px);
-margin: 0px 0px 0px 0px;
-padding: 10px;
-}
+    .main_frame{
+    width: calc(100% - 20px);
+    margin: 0px 0px 0px 0px;
+    padding: 10px;
+    position: relative;
+    }
 
-.container{
-width: calc(100% - 20px);
-
-}
-
+    .container{
+    width: calc(100% - 20px);
+    }
 }
