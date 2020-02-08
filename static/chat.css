@@ -342,9 +342,25 @@ margin: 20px 0px 0px 0px;}
     margin: 0px 0px 0px 0px;
     padding: 10px;
     position: relative;
+    height: auto;
     }
 
     .container{
     width: calc(100% - 20px);
     }
+
+    body {
+    font-size: 11px;
+    }
+
+    .main_title{
+    font-size: 30px;
+    height: 75px;
+    }
+
+    .ment{
+    font-size: 15px;
+    height: 50px;
+    }
+
 }
