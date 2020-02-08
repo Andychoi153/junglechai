@@ -402,7 +402,17 @@ there.
 
 
 /* Larger than mobile */
-@media (min-width: 400px) {}
+@media (max-width: 400px) {
+.background{
+display: none;
+}
+
+.main-frame{
+width: 100%;
+}
+
+
+}
 
 /* Larger than phablet (also point when grid becomes active) */
 @media (min-width: 550px) {}

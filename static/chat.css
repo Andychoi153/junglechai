@@ -1,13 +1,12 @@
 body {
-max-width: 3600px;
 margin-top: 0px;
 font-size: 17px;
-color: #FFFFFF;
+color: #000000;
 font-weight: lighter;
 }
 
 .tearbox{
-width: 548px;
+width: 100%;
 background: rgba(241,241,241,0.24) !important;
 box-shadow: 4px 18px 22px 0 rgba(116,116,116,0.14) !important;
 border-radius: 1px !important;
@@ -42,12 +41,13 @@ padding-left: 0px;
 }
 
 .main_frame{
-    width: 547px;
-    margin: 192px 1032px 192px 192px;
+    width: 550px;
+    margin: 225px 1032px 225px 251px;
     z-index: 3;
-    height: 547px;
+    height: 550px;
     position: absolute;
-    padding: 74px;
+    padding: 40px;
+    background-color: #FFFFFF;
 }
 
 
@@ -58,7 +58,7 @@ font-size: 17px;
 color: #FFFFFF;
 letter-spacing: 0;
 text-align: center;
-width: 547px;
+width: 100%;
 border: 0px;
 height: 50px !important;
 }
@@ -68,20 +68,19 @@ height: 50px !important;
 font-size: 46px;
 text-align: center;
 height: 100px;
-color: #FFFFFF;
+color: #000000;
 text-decoration: underline;
 }
 
 .ment{
 font-size: 24px;
 text-align: center;
-color: #FFFFFF;
+color: #000000;
     height: 125px;
 
 }
 
 .background{
-    z-index: 1;
     position: absolute;
 
 }
@@ -89,7 +88,7 @@ color: #FFFFFF;
 
 .abutton{
 text-align: center;
-width: 548px;
+width: 100%;
 margin: 20px 0px 0px 0px;}
 
 .row.row-broken {
@@ -328,4 +327,27 @@ margin: 20px 0px 0px 0px;}
 .chat input {
     -webkit-appearance: none;
     border-radius: 0;
+}
+
+
+
+@media (max-width: 700px) {
+.background{
+width: 100%;
+z-index: 3;
+position: relative;
+padding-top: 600px;
+}
+
+.main_frame{
+width: calc(100% - 80px);
+margin: 0px 0px 0px 0px;
+
+}
+
+.container{
+width: calc(100% - 80px);
+
+}
+
 }
