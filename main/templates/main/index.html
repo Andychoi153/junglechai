@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% block title %}듀오 찾기 메인 페이지{% endblock %}
 {% block content %}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -7,7 +7,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,
-  maximum-scale=1.0, minimum-scale=1.0", charset="utf-8">
+  maximum-scale=1.0, minimum-scale=1.0" charset="utf-8">
     {% load static %}
     <div class="main_frame">
        <div class="main_title"> "롤 듀오 찾아요" </div>
@@ -23,7 +23,7 @@
           </form>
     </div>
     </div>
-    <img class="background", src="{% static 'back.png'%}">
+    <img class="background" src="{% static 'back.png'%}">
                    <script>
                     $(document).ready(function() {
                        $('.btn').on('click', function() {
