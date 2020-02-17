@@ -1,7 +1,8 @@
 import datetime
 import time
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
+
 from queues import queues, matches
 from django.urls import reverse
 
@@ -113,8 +114,8 @@ def delete(request):
     # delete 요청
 
     profile = ProfileForm(request.POST)
-    profile.lol_id = profile.cleaned_data['lol_id']
-    profile.tear = profile.cleaned_data['tear']
+    profile.lol_id = profile.data['lol_id']
+    profile.tear = profile.data['tear']
     tear = profile.tear
 
     while True:
@@ -127,5 +128,5 @@ def delete(request):
     context = {
         'form': profile,
     }
-    return
+    return HttpResponse('success')
     # return render(request, 'main/index.html', context)
