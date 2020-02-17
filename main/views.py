@@ -31,7 +31,7 @@ def index(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 6:
+                if time.time() - start > 300:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
@@ -82,7 +82,7 @@ def not_found(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 6:
+                if time.time() - start > 300:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
@@ -107,3 +107,25 @@ def not_found(request):
     }
 
     return render(request, 'main/not_found.html', context)
+
+
+def delete(request):
+    # delete 요청
+
+    profile = ProfileForm(request.POST)
+    profile.lol_id = profile.cleaned_data['lol_id']
+    profile.tear = profile.cleaned_data['tear']
+    tear = profile.tear
+
+    while True:
+        lol_id = queues[(int(tear) - 1)].get()
+        if lol_id != profile.lol_id:
+            queues[(int(tear) - 1)].put(profile.lol_id)
+        else:
+            break
+
+    context = {
+        'form': profile,
+    }
+    return
+    # return render(request, 'main/index.html', context)
