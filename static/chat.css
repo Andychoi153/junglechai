@@ -256,13 +256,13 @@ margin: 20px 0px 0px 0px;}
     left: 4px;
 }
 .chat-body .answer.right .text {
-    background: #C1AD63;
+    background: #7266ba;
     color: #ffffff;
     border-radius: 8px 8px 0 8px;
 }
 .chat-body .answer.right .text:before {
     right: -30px;
-    border-left-color: #C1AD63;
+    border-left-color: #7266ba;
     border-left-width: 12px;
 }
 .chat-body .answer.right .time {
@@ -276,7 +276,7 @@ margin: 20px 0px 0px 0px;}
     position: relative;
     margin: 20px -20px -20px;
     padding: 20px;
-    background: #C1AD63;
+    background: #46be8a;
 }
 .chat-body .answer-add input {
     border: none;

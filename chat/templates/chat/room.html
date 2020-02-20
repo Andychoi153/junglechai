@@ -48,7 +48,7 @@
         let htmldiv = ``;
         jQuery.each( chatmessages, function( i, item ) {
             console.log(item);
-            let position = item.username==profileId? 'right': 'left';
+            let position = item.username==profileId? 'left': 'right';
             let avatar = item.username==profileId? 'https://bootdey.com/img/Content/avatar/avatar1.png': 'https://bootdey.com/img/Content/avatar/avatar2.png';
 
             let ago = item.ago;
@@ -129,6 +129,7 @@
       return false
       }
       else{ return true } };
+
 
 
 })
