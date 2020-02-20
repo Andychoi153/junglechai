@@ -31,7 +31,7 @@ def index(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 6:
+                if time.time() - start > 30:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
@@ -82,7 +82,7 @@ def not_found(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 6:
+                if time.time() - start > 30:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
