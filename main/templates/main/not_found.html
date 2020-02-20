@@ -4,19 +4,19 @@
 {% block content %}
 
 
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
 
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css?version=1.2">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css?version=1.2">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js?version=1.1"></script>
-
-
+<!------ Include the above in your HEAD tag ---------->
     {% load static %}
 
+<!-- Submitted March 7 @ 11:05pm  -->
 <div class="container">
 <div class="row">
     <div class="col-md-4">
@@ -32,144 +32,25 @@
              {% csrf_token %}
              {{ form.as_table }}
              <div class="abutton">
-                <button name="submit_button" type="submit" class="btn" data-toggle="modal" data-target="#myModal" data-notifyid="${list.NOTIFYID }">다시 찾아보기</button>
+                <button name="submit_button" type="submit" class="btn">다시 찾아보기</button>
              </div>
           </form>
     </div>
     </div>
+       <script>
+        $(document).ready(function() {
+           $('.btn').on('click', function() {
+             var $this = $(this);
+             var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> 대상 찾는 중...';
+             if ($(this).html() !== loadingText) {
+               $this.data('original-text', $(this).html());
+               $this.html(loadingText);
 
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-          </div>
-          <div class="modal-body">
-            <i class="fa fa-circle-o-notch fa-spin"></i> 대상 찾는 중...
-            <center><h1 id="timer" style="font-size:72px;">00:00:00</h1></center>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-danger" onclick="stopTimer()" data-dismiss="modal">매칭 종료</button>
-          </div>
-        </div>
-      </div>
-    </div>
-                   <script>
-                    var lol_id = "";
-                    var tear = "";
-                    $(document).ready(function() {
-                       $('.btn').on('click', function() {
-                         var $this = $(this);
-                         var flag = 0;
-                         var status = 1;
-                         if (status !== flag) {
-                            clearTimeout(timer);
-                            display.innerHTML = "00:00:00";
-                            secs = 0;
-                            mins = 0;
-                            hrs = 0;
-                            h = "";
-                            m = "";
-                            s = "";
-                           flag = 1;
-                           timerDuration();
-                         }
-                         lol_id = document.getElementById("user_info").elements["lol_id"].value;
-                         tear = document.getElementById("user_info").elements["tear"].value;
-
-
-                       });
-                     })
-
-                    var display = document.getElementById('timer');
-                    var secs = 0;
-                    var mins = 0;
-                    var hrs  = 0;
-                    var h = "";
-                    var m = "";
-                    var s = "";
-                    var timer;;
-
-                    var csrf = $('input[name=csrfmiddlewaretoken]').val();
-
-
-                    function countTimer(){
-                        secs++;
-
-                        if(secs >= 60){
-                            secs = 0;
-                            mins++;
-                            if(mins >= 60){
-                                mins = 0;
-                                hrs++;
-                            }
-                        }
-
-                        h = hrs ? hrs > 9 ? hrs : "0" + hrs : "00";
-                        m = mins ? mins > 9 ? mins : "0" + mins : "00";
-                        s = secs > 9 ? secs : "0" + secs;
-
-                        display.innerHTML = h+":"+m+":"+s;
-
-                        timerDuration();
-                    }
-
-                    function timerDuration(){
-                        if(hrs != 99){
-                            timer = setTimeout(countTimer, 1000);
-                        }
-
-                    }
-
-                    function stopTimer(){
-                        clearTimeout(timer);
-                        display.innerHTML = "00:00:00";
-                        secs = 0;
-                        mins = 0;
-                        hrs = 0;
-                        h = "";
-                        m = "";
-                        s = "";
-
-                        makeAjaxRequest();
-                    }
-
-                    function resetTimer(){
-                        document.getElementsByClassName('btn-success')[0].removeAttribute('disabled');
-                        clearTimeout(timer);
-                        display.innerHTML = "00:00:00";
-                        secs = 0;
-                        mins = 0;
-                        hrs = 0;
-                        h = "";
-                        m = "";
-                        s = "";
-                    }
-
-                    function csrfSafeMethod(method) {
-                      // these HTTP methods do not require CSRF protection
-                      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-                    }
-                    $.ajaxSetup({
-                        beforeSend: function(xhr, settings) {
-                            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                                xhr.setRequestHeader("X-CSRFToken", csrf);
-                            }
-                        }
-                    });
-
-                    function makeAjaxRequest() {
-                    $.ajax({
-                        url: '/delete',
-                        type: 'POST',
-                        dataType:'json',
-                        data:{'tear':tear, 'lol_id':lol_id},
-                        success: function(data){
-                        }
-                    });
-                   }
-
-                  </script>
+             }
+            <!--$this.attr('disabled', 'disabled');-->
+           });
+         })
+      </script>
         <div id="comment"></div>
     </div><!--.col -->
 </div><!--./row -->
