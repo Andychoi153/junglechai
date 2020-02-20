@@ -22,6 +22,53 @@ max-width: 3000px;
 padding: 0px;
 }
 
+.main-title{
+font-size : 30px;
+padding-left: 10px;
+font-weight: bold;
+text-align: center;
+display:flex;
+font-style : oblique;
+}
+
+
+.app-header{
+display: flex;
+height: 55px;
+padding: 1rem;
+background: #ebebeb;
+color: #333333;
+font-weight: bold;
+justify-content: space-between;
+align-items: center;
+top: 0;
+/* width: 100% */
+left: 0;
+right: 0;
+}
+
+.subtitle{
+font-size: 15px;
+text-align: center;
+vertical-align: middle;
+padding-top: 15px;
+font-style : normal;
+padding-left: 10px;
+color: gray;
+}
+
+
+.rightbar{
+}
+
+h1{
+text-align: center !important;
+}
+
+.ha{
+float: right;
+}
+
 p.deck {
     font-size: 2.5rem;
     font-weight: 200;
