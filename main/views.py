@@ -1,8 +1,7 @@
 import datetime
 import time
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponseRedirect, HttpResponse
-
+from django.http import HttpResponseRedirect
 from queues import queues, matches
 from django.urls import reverse
 
@@ -32,7 +31,7 @@ def index(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 300:
+                if time.time() - start > 6:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
@@ -83,7 +82,7 @@ def not_found(request):
                     matches.update({profile.lol_id: None})
                     match_flag = 1
                     break
-                if time.time() - start > 300:
+                if time.time() - start > 6:
                     lol_id = queues[(int(tear) - 1)].get()
                     if lol_id != profile.lol_id:
                         queues[(int(tear) - 1)].put(profile.lol_id)
@@ -108,25 +107,3 @@ def not_found(request):
     }
 
     return render(request, 'main/not_found.html', context)
-
-
-def delete(request):
-    # delete 요청
-
-    profile = ProfileForm(request.POST)
-    profile.lol_id = profile.data['lol_id']
-    profile.tear = profile.data['tear']
-    tear = profile.tear
-
-    while True:
-        lol_id = queues[(int(tear) - 1)].get()
-        if lol_id != profile.lol_id:
-            queues[(int(tear) - 1)].put(profile.lol_id)
-        else:
-            break
-
-    context = {
-        'form': profile,
-    }
-    return HttpResponse('success')
-    # return render(request, 'main/index.html', context)
