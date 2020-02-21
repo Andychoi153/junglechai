@@ -5,24 +5,24 @@ enc = hashlib.md5()
 
 iron = Manager().Queue()
 bronze = Manager().Queue()
-silver = Manager().Queue()
-gold = Manager().Queue()
-platinum = Manager().Queue()
-diamond = Manager().Queue()
-master = Manager().Queue()
-grand_master = Manager().Queue()
-challenger = Manager().Queue()
+# silver = Manager().Queue()
+# gold = Manager().Queue()
+# platinum = Manager().Queue()
+# diamond = Manager().Queue()
+# master = Manager().Queue()
+# grand_master = Manager().Queue()
+# challenger = Manager().Queue()
 
 queues = [
     iron,
     bronze,
-    silver,
-    gold,
-    platinum,
-    diamond,
-    master,
-    grand_master,
-    challenger
+    # silver,
+    # gold,
+    # platinum,
+    # diamond,
+    # master,
+    # grand_master,
+    # challenger
 ]
 
 matches = Manager().dict({})
