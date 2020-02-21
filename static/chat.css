@@ -392,6 +392,9 @@ margin: 20px 0px 0px 0px;}
     height: auto;
     }
 
+    .rightbar{
+    display: none;}
+
     .container{
     width: calc(100% - 20px);
     }
