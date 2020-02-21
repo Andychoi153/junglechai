@@ -9,20 +9,24 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,
   maximum-scale=1.0, minimum-scale=1.0" charset="utf-8">
     {% load static %}
-    <div class="main_frame">
-       <div class="main_title"> "롤 듀오 찾아요" </div>
-       <div class="ment">사용가 적어서... 티어 통합 매칭으로 할게요 ㅈㅅ...</div>
-       <div class="ment">h0516@kakao.com 피드백 ㄱㄱ 바로 수정함</div>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-       <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600,200' rel='stylesheet' type='text/css'>
-          <form class="id_input" action="" method="post" onsubmit="this.submit_button.disabled = true;">
-             {% csrf_token %}
-             {{ form.as_table }}
-             <div class="abutton">
-                <button name="submit_button" type="submit" class="btn">랜덤 매칭</button>
-             </div>
-          </form>
-    </div>
+   <div class="flex">
+      <div class="main_frame">
+          <div class="main_title"> "롤 듀오 찾아요" </div>
+          <div class="ment">사용가 적어서... 티어 통합 매칭으로 할게요 ㅈㅅ...</div>
+          <div class="ment">h0516@kakao.com 피드백 ㄱㄱ 바로 수정함</div>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600,200' rel='stylesheet' type='text/css'>
+             <form class="id_input" action="" method="post" onsubmit="this.submit_button.disabled = true;">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <div class="abutton">
+                   <button name="submit_button" type="submit" class="btn">랜덤 매칭</button>
+                </div>
+             </form>
+       </div>
+       <div class="chat_frame">
+
+       </div>
     </div>
     <img class="background" src="{% static 'back.png'%}">
                    <script>
