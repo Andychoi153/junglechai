@@ -1,6 +1,6 @@
 import hashlib
 from multiprocessing import Manager
-
+from main.utils import consumer
 enc = hashlib.md5()
 
 iron = Manager().Queue()
@@ -27,39 +27,45 @@ queues = [
 
 matches = Manager().dict({})
 
+#
+# def dequeueing(queues, match):
+#     try:
+#         while True:
+#             for pair in queues:
+#                 if pair.qsize() >= 2:
+#                     a = pair.get()
+#                     b = pair.get()
+#                     # random hash
+#                     string = (a+b).encode('utf-8')
+#                     enc.update(string)
+#                     hashing_chat_room = enc.hexdigest()
+#                     matches.update({a: {
+#                                           'room': hashing_chat_room,
+#                                           'duo': b},
+#                                     b: {
+#                                             'room': hashing_chat_room,
+#                                             'duo': a}})
+#
+#                     print('hashing done')
+#
+#     except Exception as e:
+#         print('whats?')
+#         print(e)
+#         while True:
+#             for pair in queues:
+#                 if pair.qsize() >= 2:
+#                     a = pair.get()
+#                     b = pair.get()
+#                     # random hash
+#                     string = (a+b).encode('utf-8')
+#                     enc.update(string)
+#                     hashing_chat_room = enc.hexdigest()
+#                     matches.update({a: hashing_chat_room,
+#                                     b: hashing_chat_room})
+#                     print('hashing done')
 
-def dequeueing(queues, match):
-    try:
-        while True:
-            for pair in queues:
-                if pair.qsize() >= 2:
-                    a = pair.get()
-                    b = pair.get()
-                    # random hash
-                    string = (a+b).encode('utf-8')
-                    enc.update(string)
-                    hashing_chat_room = enc.hexdigest()
-                    matches.update({a: {
-                                          'room': hashing_chat_room,
-                                          'duo': b},
-                                    b: {
-                                            'room': hashing_chat_room,
-                                            'duo': a}})
 
-                    print('hashing done')
-
-    except Exception as e:
-        print('whats?')
-        print(e)
-        while True:
-            for pair in queues:
-                if pair.qsize() >= 2:
-                    a = pair.get()
-                    b = pair.get()
-                    # random hash
-                    string = (a+b).encode('utf-8')
-                    enc.update(string)
-                    hashing_chat_room = enc.hexdigest()
-                    matches.update({a: hashing_chat_room,
-                                    b: hashing_chat_room})
-                    print('hashing done')
+#
+# def consumer_match():
+#     for message in consumer:
+#         matches.update(message.value)

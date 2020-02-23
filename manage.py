@@ -3,8 +3,7 @@
 import os
 import sys
 from multiprocessing import Process
-from queues import matches, dequeueing, queues
-
+# from queues import matches, consumer_match, queues
 
 
 def main():
@@ -26,6 +25,6 @@ def main():
 
 
 if __name__ == '__main__':
-    p = Process(target=dequeueing, args=(queues, matches), daemon=True)
-    p.start()
+    # p = Process(target=consumer_match, daemon=True)
+    # p.start()
     main()
