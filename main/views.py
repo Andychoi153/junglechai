@@ -22,12 +22,12 @@ def index(request):
             match_flag = 0
             profile.lol_id = profile.cleaned_data['lol_id']
             profile.tear = profile.cleaned_data['tear']
-            tear = profile.tear
+            tear = int(profile.tear)
             lol_id = profile.lol_id
 
-            data = {'id': '누굴지요',
-                    'tear': 0,
-                    'tear_matrix': tear_matrix[0],
+            data = {'id': lol_id,
+                    'tear': tear,
+                    'tear_matrix': tear_matrix[tear],
                     'time': 0}
 
             producer.send('test', value=data)
@@ -42,9 +42,9 @@ def index(request):
                         break
                 else:
                     if time.time() - start > 3000:
-                        data = {'id': '누굴지요',
-                                'tear': 0,
-                                'tear_matrix': tear_matrix[0],
+                        data = {'id': lol_id,
+                                'tear': tear,
+                                'tear_matrix': tear_matrix[tear],
                                 'time': 0,
                                 'delete': 1}
                         producer.send('test', value=data)
@@ -88,13 +88,14 @@ def not_found(request):
             tear = int(profile.tear)
             lol_id = profile.lol_id
 
-            data = {'id': '누굴지요',
+            data = {'id': lol_id,
                     'tear': tear,
                     'tear_matrix': tear_matrix[tear],
                     'time': 0}
 
             producer.send('test', value=data)
             start = time.time()
+
             for message in consumer:
                 matches = message.value
                 if matches:
@@ -104,9 +105,9 @@ def not_found(request):
                         break
                 else:
                     if time.time() - start > 3000:
-                        data = {'id': '누굴지요',
-                                'tear': 0,
-                                'tear_matrix': tear_matrix[0],
+                        data = {'id': lol_id,
+                                'tear': tear,
+                                'tear_matrix': tear_matrix[tear],
                                 'time': 0,
                                 'delete': 1}
                         producer.send('test', value=data)
