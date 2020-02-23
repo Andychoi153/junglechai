@@ -97,7 +97,7 @@ if __name__ == '__main__':
             # filter 1
             for k, v in match.items():
                 if v == 1:
-                    if (k[0] not in matcher_list) or (k[1] not in matcher_list):
+                    if (k[0] not in matcher_list) and (k[1] not in matcher_list):
                         matcher_list.append(k[0])
                         matcher_list.append(k[1])
                         total_match.append(k)
@@ -105,7 +105,7 @@ if __name__ == '__main__':
             # filter 0.5
             for k, v in match.items():
                 if v >= 0.5:
-                    if (k[0] not in matcher_list) or (k[1] not in matcher_list):
+                    if (k[0] not in matcher_list) and (k[1] not in matcher_list):
                         matcher_list.append(k[0])
                         matcher_list.append(k[1])
                         total_match.append(k)
@@ -113,7 +113,7 @@ if __name__ == '__main__':
             # filter 0.3
             for k, v in match.items():
                 if v >= 0.3:
-                    if (k[0] not in matcher_list) or (k[1] not in matcher_list):
+                    if (k[0] not in matcher_list) and (k[1] not in matcher_list):
                         matcher_list.append(k[0])
                         matcher_list.append(k[1])
                         total_match.append(k)
