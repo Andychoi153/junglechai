@@ -91,11 +91,11 @@ if __name__ == '__main__':
                             match.update({(i[0], j[0]): score})
 
                         else:
-                            if i[1].get('time') <= 5:
+                            if 500 < i[1].get('time') <= 1000:
                                 if score >= 0.5:
                                     match.update({(i[0], j[0]): score})
 
-                            elif 5 < i[1].get('time') <= 10:
+                            elif 1000 < i[1].get('time'):
                                 if score >= 0.3:
                                     match.update({(i[0], j[0]): score})
 
