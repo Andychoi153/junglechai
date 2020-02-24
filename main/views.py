@@ -50,6 +50,7 @@ def index(request):
                                 }
                         producer.send('test', value=data)
                         break
+                time.sleep(0.1)
 
             if match_flag == 1:
                 room, duo = list(values.items())[0]
@@ -116,6 +117,7 @@ def not_found(request):
                                 }
                         producer.send('test', value=data)
                         break
+                time.sleep(0.1)
 
             if match_flag == 1:
                 room, duo = list(values.items())[0]
