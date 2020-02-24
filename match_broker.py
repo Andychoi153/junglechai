@@ -41,7 +41,7 @@ tear_matrix = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.5, 1, 1],  # challenger
 ]
 
-test_set = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+test_set = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
 if __name__ == '__main__':
@@ -91,11 +91,11 @@ if __name__ == '__main__':
                             match.update({(i[0], j[0]): score})
 
                         else:
-                            if 500 < i[1].get('time') <= 1000:
+                            if 20 < i[1].get('time') <= 120:
                                 if score >= 0.5:
                                     match.update({(i[0], j[0]): score})
 
-                            elif 1000 < i[1].get('time'):
+                            elif 120 < i[1].get('time'):
                                 if score >= 0.3:
                                     match.update({(i[0], j[0]): score})
 
