@@ -5,6 +5,7 @@ import numpy as np
 from json import loads
 import time
 import hashlib
+from redis_utils import r
 
 enc = hashlib.md5()
 
@@ -47,10 +48,11 @@ if __name__ == '__main__':
     for _ in range(100):
         value = np.random.normal(loc=10, scale=20, size=3).astype(str).tolist()
 
-        data = {'id': '누굴지요',
-                'tear': 13,
-                'tear_matrix': test_set,
-                'time': 0}
+        data = {'누굴지요': {
+                    'tear': 13,
+                    'tear_matrix': test_set,
+                    'time': 0}
+                }
         print(data)
         producer.send('test', value=data)
         sleep(0.1)
@@ -61,7 +63,7 @@ if __name__ == '__main__':
     print(topics)
     consumer.subscribe(['test'])
 
-    pair = []
+    pair = dict()
     match = dict()
     matcher_list = []
     total_match = []
@@ -72,27 +74,30 @@ if __name__ == '__main__':
                                                                     message.offset, message.key,
                                                                     message.value))
         value = message.value
-        pair.append(value)
+        pair.update(value)
         if count >= 9 or (time.time()-start > 5 and count >= 2):
+            sleep(0.5)
             count = -1
 
-            for idx, i in enumerate(pair):
-                if i.get('delete') == 1:
-                    matcher_list.append(i.get('id'))
+            for idx, i in enumerate(pair.items()):
+                if i[1].get('delete') == 1:
+                    matcher_list.append(i[0])
 
-                for j in pair[idx:]:
-                    score = i.get('tear_matrix')[j.get('tear')]
-                    if score == 1:
-                        match.update({(i.get('id'), j.get('id')): score})
+                if idx != pair.items().__len__():
 
-                    else:
-                        if i.get('time') <= 5:
-                            if score >= 0.5:
-                                match.update({[i.get('id'), j.get('id')]: score})
+                    for j in list(pair.items())[idx+1:]:
+                        score = i[1].get('tear_matrix')[j[1].get('tear')]
+                        if score == 1:
+                            match.update({(i[0], j[0]): score})
 
-                        elif 5 < i.get('time') <= 10:
-                            if score >= 0.3:
-                                match.update({[i.get('id'), j.get('id')]: score})
+                        else:
+                            if i[1].get('time') <= 5:
+                                if score >= 0.5:
+                                    match.update({[i[0], j[0]]: score})
+
+                            elif 5 < i[1].get('time') <= 10:
+                                if score >= 0.3:
+                                    match.update({[i[0], j[0]]: score})
 
             # filter 1
             for k, v in match.items():
@@ -118,27 +123,26 @@ if __name__ == '__main__':
                         matcher_list.append(k[1])
                         total_match.append(k)
 
-            # 매치 된 애들은 match queue 에 전송
+            # 매치 된 애들은 match db 에 전송, ttl 은 3초
             for data in total_match:
                 # random hash
                 string = (data[0] + data[1]).encode('utf-8')
                 enc.update(string)
                 hashing_chat_room = enc.hexdigest()
-                room_a = {data[0]: hashing_chat_room}
-                room_b = {data[1]: hashing_chat_room}
-
-                producer.send('match', value=room_a)
-                producer.send('match', value=room_b)
+                r.hset(data[0], hashing_chat_room, data[1])
+                r.hset(data[1], hashing_chat_room, data[0])
+                r.expire(data[0], 3)
+                r.expire(data[1], 3)
 
             # pair 에서 match 없는 친구들은 time inc 후 다시 큐에 넣음
             # 여기서는 delete 하지 않음
-            for value in pair:
-                if value.get('id') not in matcher_list:
-                    time_value = value.get('time')
-                    value.update({'time': time_value+1})
-                    producer.send('test', value=value)
+            for k, v in pair.items():
+                if k not in matcher_list:
+                    time_value = v.get('time')
+                    v.update({'time': time_value+1})
+                    producer.send('test', value={k: v})
             # sleep(1)
-            pair = []
+            pair = dict()
             match = dict()
             matcher_list = []
             total_match = []

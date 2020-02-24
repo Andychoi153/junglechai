@@ -4,7 +4,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 # from queues import matches
-
+from redis_utils import r
 from .forms import ProfileForm
 from .utils import producer, consumer, tear_matrix
 
@@ -25,34 +25,37 @@ def index(request):
             tear = int(profile.tear)
             lol_id = profile.lol_id
 
-            data = {'id': lol_id,
-                    'tear': tear,
-                    'tear_matrix': tear_matrix[tear],
-                    'time': 0}
+            data = {lol_id: {
+                        'tear': tear,
+                        'tear_matrix': tear_matrix[tear],
+                        'time': 0}
+                    }
 
             producer.send('test', value=data)
             start = time.time()
 
-            for message in consumer:
-                matches = message.value
-                if matches:
-                    values = matches.get(profile.lol_id)
-                    if values:
-                        match_flag = 1
-                        break
+            while True:
+                values = r.hgetall(profile.lol_id)
+                if values:
+                    match_flag = 1
+                    r.delete(profile.lol_id)
+                    break
                 else:
                     if time.time() - start > 3000:
-                        data = {'id': lol_id,
-                                'tear': tear,
-                                'tear_matrix': tear_matrix[tear],
-                                'time': 0,
-                                'delete': 1}
+                        data = {lol_id: {
+                                    'tear': tear,
+                                    'tear_matrix': tear_matrix[tear],
+                                    'time': 0,
+                                    'delete': 1}
+                                }
                         producer.send('test', value=data)
                         break
 
             if match_flag == 1:
-                room = values.get('room')
-                duo = values.get('duo')
+                room, duo = list(values.items())[0]
+                room = room.decode('utf-8')
+                duo = duo.decode('utf-8')
+
                 return HttpResponseRedirect(f'/chat/{room}?profile_id={lol_id}&duo_profile_id={duo}&tear={tear}')
             else:
                 context = {
@@ -88,34 +91,36 @@ def not_found(request):
             tear = int(profile.tear)
             lol_id = profile.lol_id
 
-            data = {'id': lol_id,
-                    'tear': tear,
-                    'tear_matrix': tear_matrix[tear],
-                    'time': 0}
+            data = {lol_id: {
+                        'tear': tear,
+                        'tear_matrix': tear_matrix[tear],
+                        'time': 0}
+                    }
 
             producer.send('test', value=data)
             start = time.time()
 
-            for message in consumer:
-                matches = message.value
-                if matches:
-                    values = matches.get(profile.lol_id)
-                    if values:
-                        match_flag = 1
-                        break
+            while True:
+                values = r.hgetall(profile.lol_id)
+                if values:
+                    match_flag = 1
+                    r.delete(profile.lol_id)
+                    break
                 else:
                     if time.time() - start > 3000:
-                        data = {'id': lol_id,
-                                'tear': tear,
-                                'tear_matrix': tear_matrix[tear],
-                                'time': 0,
-                                'delete': 1}
+                        data = {lol_id: {
+                                    'tear': tear,
+                                    'tear_matrix': tear_matrix[tear],
+                                    'time': 0,
+                                    'delete': 1}
+                                }
                         producer.send('test', value=data)
                         break
 
             if match_flag == 1:
-                room = values.get('room')
-                duo = values.get('duo')
+                room, duo = list(values.items())[0]
+                room = room.decode('utf-8')
+                duo = duo.decode('utf-8')
                 return HttpResponseRedirect(f'/chat/{room}?profile_id={lol_id}&duo_profile_id={duo}&tear={tear}')
             else:
                 context = {

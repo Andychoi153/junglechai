@@ -15,13 +15,16 @@ hiredis==1.0.1
 hyperlink==19.0.0
 idna==2.8
 incremental==17.5.0
+kafka-python==2.0.1
 msgpack==0.6.2
+numpy==1.18.1
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.19
 PyHamcrest==1.9.0
 pyOpenSSL==19.1.0
 pytz==2019.3
+redis==3.4.1
 service-identity==18.1.0
 six==1.13.0
 sqlparse==0.3.0
