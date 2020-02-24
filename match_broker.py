@@ -93,11 +93,11 @@ if __name__ == '__main__':
                         else:
                             if i[1].get('time') <= 5:
                                 if score >= 0.5:
-                                    match.update({[i[0], j[0]]: score})
+                                    match.update({(i[0], j[0]): score})
 
                             elif 5 < i[1].get('time') <= 10:
                                 if score >= 0.3:
-                                    match.update({[i[0], j[0]]: score})
+                                    match.update({(i[0], j[0]): score})
 
             # filter 1
             for k, v in match.items():
