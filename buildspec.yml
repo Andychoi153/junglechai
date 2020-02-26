@@ -11,7 +11,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t jungle-chai:latest .
+      - docker build -t jungle-chai .
       - docker tag jungle-chai:latest 999980671152.dkr.ecr.us-east-1.amazonaws.com/jungle-chai:latest
   post_build:
     commands:
