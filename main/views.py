@@ -31,7 +31,7 @@ def index(request):
                         'time': 0}
                     }
 
-            producer.send('test', value=data)
+            producer.send('match', value=data)
             start = time.time()
 
             while True:
@@ -48,7 +48,7 @@ def index(request):
                                     'time': 0,
                                     'delete': 1}
                                 }
-                        producer.send('test', value=data)
+                        producer.send('match', value=data)
                         break
                 time.sleep(0.1)
 
@@ -98,7 +98,7 @@ def not_found(request):
                         'time': 0}
                     }
 
-            producer.send('test', value=data)
+            producer.send('match', value=data)
             start = time.time()
 
             while True:
@@ -115,7 +115,7 @@ def not_found(request):
                                     'time': 0,
                                     'delete': 1}
                                 }
-                        producer.send('test', value=data)
+                        producer.send('match', value=data)
                         break
                 time.sleep(0.1)
 

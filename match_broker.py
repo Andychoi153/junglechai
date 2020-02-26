@@ -54,7 +54,7 @@ if __name__ == '__main__':
                     'time': 0}
                 }
         print(data)
-        producer.send('test', value=data)
+        producer.send('match', value=data)
         sleep(0.1)
 
     print("Consumer 연결")
@@ -140,7 +140,7 @@ if __name__ == '__main__':
                 if k not in matcher_list:
                     time_value = v.get('time')
                     v.update({'time': time_value+1})
-                    producer.send('test', value={k: v})
+                    producer.send('match', value={k: v})
             # sleep(1)
             pair = dict()
             match = dict()
