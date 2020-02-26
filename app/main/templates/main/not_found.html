@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}듀오 찾기 실패 페이지{% endblock %}
+
+{% block content %}
+
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+    {% load static %}
+
+<!-- Submitted March 7 @ 11:05pm  -->
+<div class="container">
+<div class="row">
+    <div class="col-md-4">
+        <img src="{% static 'pepe_down_image.jpeg'%}" class="img-responsive center-block" alt="">
+    </div><!--.col -->
+    <div class="col-md-8">
+        <h3>
+            죄송합니다... 현재 매칭 상대가 없네요..
+        </h3>
+
+<!-- NOTE: TB3 form width default is 100%, so they expan to your <div> -->
+        <form class="id_input" action="" method="post" onsubmit="this.submit_button.disabled = true;">
+             {% csrf_token %}
+             {{ form.as_table }}
+             <div class="abutton">
+                <button name="submit_button" type="submit" class="btn">다시 찾아보기</button>
+             </div>
+          </form>
+    </div>
+    </div>
+       <script>
+        $(document).ready(function() {
+           $('.btn').on('click', function() {
+             var $this = $(this);
+             var loadingText = '<i class="fa fa-circle-o-notch fa-spin"></i> 대상 찾는 중...';
+             if ($(this).html() !== loadingText) {
+               $this.data('original-text', $(this).html());
+               $this.html(loadingText);
+
+             }
+            <!--$this.attr('disabled', 'disabled');-->
+           });
+         })
+      </script>
+        <div id="comment"></div>
+    </div><!--.col -->
+</div><!--./row -->
+</div><!--./container -->
+{% endblock content %}

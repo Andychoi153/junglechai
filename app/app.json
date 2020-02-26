@@ -1,0 +1,18 @@
+{
+    "name": "Django Channels Example",
+    "description": "A real-time chat app, built as a simple example of using Django Channels ",
+    "keywords": ["django", "channels", "websockets"],
+    "env": {
+        "SECRET_KEY": {
+            "description": "Django's SECRET_KEY setting",
+            "generator": "secret"
+        }
+    },
+    "addons": ["heroku-redis"],
+    "formation": {
+        "web": {
+            "quantity": 1,
+          " size": "Free"
+        }
+    }
+}
