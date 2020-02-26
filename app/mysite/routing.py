@@ -15,5 +15,3 @@ application = ProtocolTypeRouter({
         )
     ),
 })
-
-:latest
