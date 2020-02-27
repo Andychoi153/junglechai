@@ -2,14 +2,14 @@ from kafka import KafkaProducer, KafkaConsumer
 from json import dumps, loads
 
 
-producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+producer = KafkaProducer(bootstrap_servers=['kafka-match.local:9092'],
                          key_serializer=None,
                          value_serializer=lambda x:
                          dumps(x).encode('utf-8'))
 
 
 consumer = KafkaConsumer(
-     bootstrap_servers=['localhost:9092'],
+     bootstrap_servers=['kafka-match.local:9092'],
      auto_offset_reset='earliest',
      enable_auto_commit=True,
      group_id='sr',
