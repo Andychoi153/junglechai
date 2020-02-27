@@ -1,4 +1,4 @@
 import redis
 
-r = redis.StrictRedis(host='127.0.0.1', port=6379, db=7)
+r = redis.StrictRedis(host='54.152.172.126', port=6379, db=7)
 
