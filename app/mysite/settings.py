@@ -47,7 +47,7 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
 
-            "hosts": [('redis-7da3b233408f646c.elb.us-east-1.amazonaws.com', 6379)],
+            "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
