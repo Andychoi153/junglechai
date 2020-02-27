@@ -47,7 +47,7 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
 
-            "hosts": [('chat-broker.sd2cmv.ng.0001.use1.cache.amazonaws.com', 6379)],
+            "hosts": [('redis-7da3b233408f646c.elb.us-east-1.amazonaws.com', 6379)],
         },
     },
 }

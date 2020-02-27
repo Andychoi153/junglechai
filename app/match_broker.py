@@ -10,7 +10,7 @@ from redis_utils import r
 enc = hashlib.md5()
 
 
-producer = KafkaProducer(bootstrap_servers=['kafka-match.local:9092'],
+producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
                          # key_serializer=None,
                          # batch_size=1,
                          # buffer_memory=1,
@@ -18,7 +18,7 @@ producer = KafkaProducer(bootstrap_servers=['kafka-match.local:9092'],
                          dumps(x).encode('utf-8'))
 
 consumer = KafkaConsumer(
-     bootstrap_servers=['kafka-match.local:9092'],
+     bootstrap_servers=['localhost:9092'],
      auto_offset_reset='earliest',
      enable_auto_commit=True,
      group_id='sr',
