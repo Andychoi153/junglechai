@@ -11,7 +11,7 @@ enc = hashlib.md5()
 
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
-                         # key_serializer=None,
+                         key_serializer=None,
                          # batch_size=1,
                          # buffer_memory=1,
                          value_serializer=lambda x:
@@ -61,7 +61,7 @@ if __name__ == '__main__':
 
     topics = consumer.topics()
     print(topics)
-    consumer.subscribe(['test'])
+    consumer.subscribe(['match'])
 
     pair = dict()
     match = dict()
