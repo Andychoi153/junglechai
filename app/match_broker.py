@@ -152,7 +152,8 @@ def run_broker():
 
 
 if __name__ == '__main__':
-    run_broker()
+    while True:
+        run_broker()
 
 # p = Process(target=run_broker)
     # p.start()
