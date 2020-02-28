@@ -6,6 +6,8 @@ from json import loads
 import time
 import hashlib
 from redis_utils import r
+from multiprocessing import Process
+
 
 enc = hashlib.md5()
 
@@ -44,7 +46,7 @@ tear_matrix = [
 test_set = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 
-if __name__ == '__main__':
+def run_broker():
     for _ in range(100):
         value = np.random.normal(loc=10, scale=20, size=3).astype(str).tolist()
 
@@ -149,3 +151,7 @@ if __name__ == '__main__':
 
         count += 1
         # 표 만들어지면 하면 되지 않나? / blossom algorithm 생각 해볼 것!
+
+if __name__ == '__main__':
+    p = Process(target=run_broker, daemon=True)
+    p.start()
