@@ -48,8 +48,6 @@ test_set = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 def run_broker():
     for _ in range(100):
-        value = np.random.normal(loc=10, scale=20, size=3).astype(str).tolist()
-
         data = {'누굴지요': {
                     'tear': 13,
                     'tear_matrix': test_set,
@@ -152,6 +150,9 @@ def run_broker():
         count += 1
         # 표 만들어지면 하면 되지 않나? / blossom algorithm 생각 해볼 것!
 
+
 if __name__ == '__main__':
-    p = Process(target=run_broker, daemon=True)
-    p.start()
+    run_broker()
+
+# p = Process(target=run_broker)
+    # p.start()
