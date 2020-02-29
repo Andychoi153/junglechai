@@ -39,7 +39,7 @@ def index(request):
                     r.delete(profile.lol_id)
                     break
                 else:
-                    if time.time() - start > 3000:
+                    if time.time() - start > 300:
                         data = {lol_id: {
                                     'tear': tear,
                                     'tear_matrix': tear_matrix[tear],
@@ -106,7 +106,7 @@ def not_found(request):
                     r.delete(profile.lol_id)
                     break
                 else:
-                    if time.time() - start > 3000:
+                    if time.time() - start > 300:
                         data = {lol_id: {
                                     'tear': tear,
                                     'tear_matrix': tear_matrix[tear],
