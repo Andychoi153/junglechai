@@ -95,10 +95,10 @@ def run_broker():
                                 if score >= 0.5:
                                     match.update({(i[0], j[0]): score})
 
-                            elif 30 < i[1].get('time') < 600:
+                            elif 30 < i[1].get('time') < 360:
                                 if score >= 0.3:
                                     match.update({(i[0], j[0]): score})
-                            elif 600 < i[1].get('time'):
+                            elif 360 < i[1].get('time'):
                                 # 300 초 지나면 deprecated
                                 matcher_list.append(i[0])
 
