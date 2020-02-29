@@ -1,4 +1,5 @@
 body {
+link: #000000 !important;
 margin-top: 0px;
 font-size: 17px;
 color: #000000;
@@ -46,6 +47,7 @@ top: 0;
 /* width: 100% */
 left: 0;
 right: 0;
+link: #000000 !important;
 }
 
 .subtitle{
