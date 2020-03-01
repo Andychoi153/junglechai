@@ -19,7 +19,7 @@ def index(request):
         if profile.is_valid():
             match_flag = 0
             profile.lol_id = profile.cleaned_data['lol_id']
-            profile.tear = profile.cleaned_data['tear']
+            profile.tear = profile.cleaned_data['tier']
             tear = int(profile.tear)
             lol_id = profile.lol_id
 
@@ -86,7 +86,7 @@ def not_found(request):
         if profile.is_valid():
             match_flag = 0
             profile.lol_id = profile.cleaned_data['lol_id']
-            profile.tear = profile.cleaned_data['tear']
+            profile.tear = profile.cleaned_data['tier']
             tear = int(profile.tear)
             lol_id = profile.lol_id
 

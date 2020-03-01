@@ -17,5 +17,5 @@ class Profile(models.Model):
                     (11, '마스터'),
                     (12, '그랜드 마스터'),
                     (13, '챌린저'),)
-    tear = models.IntegerField(choices=TEAR_CHOICES)
+    tier = models.IntegerField(choices=TEAR_CHOICES)
     lol_id = models.CharField(max_length=30)
